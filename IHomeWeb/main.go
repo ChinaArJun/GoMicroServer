@@ -1,7 +1,7 @@
 package main
 
 import (
-	"HouseProject/IHomeWeb/handler"
+	"GoMicroServer/IHomeWeb/handler"
 	"github.com/micro/go-micro/util/log"
 	"net/http"
 
@@ -9,7 +9,7 @@ import (
 	"github.com/micro/go-micro/web"
 
 	// 数据库初始化
-	_ "HouseProject/IHomeWeb/models"
+	_ "GoMicroServer/IHomeWeb/models"
 )
 
 func main() {

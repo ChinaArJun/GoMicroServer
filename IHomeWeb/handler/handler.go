@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"HouseProject/IHomeWeb/models"
+	"GoMicroServer/IHomeWeb/models"
 	"context"
 	"encoding/json"
 
@@ -13,7 +13,7 @@ import (
 
 	"github.com/micro/go-grpc"
 
-	GETAREA "HouseProject/GetArea/proto/GetArea"
+	GETAREA "GoMicroServer/GetArea/proto/GetArea"
 	//Ihomeweb "github.com/micro/examples/template/srv/proto/example"
 )
 
