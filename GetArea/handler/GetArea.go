@@ -3,27 +3,26 @@ package handler
 import (
 	"context"
 
+	getArea "GoMicroServer/GetArea/proto/GetArea"
 	"github.com/micro/go-micro/util/log"
-
-	GetArea "./GetArea/proto/GetArea"
 )
 
 type GetArea struct{}
 
 // Call is a single request handler called via client.Call or the generated client code
-func (e *GetArea) Call(ctx context.Context, req *GetArea.Request, rsp *GetArea.Response) error {
+func (e *GetArea) Call(ctx context.Context, req *getArea.Request, rsp *getArea.Response) error {
 	log.Log("Received GetArea.Call request")
-	rsp.Msg = "Hello " + req.Name
+	rsp.Errmsg = "Hello " + req.Name
 	return nil
 }
 
 // Stream is a server side stream handler called via client.Stream or the generated client code
-func (e *GetArea) Stream(ctx context.Context, req *GetArea.StreamingRequest, stream GetArea.GetArea_StreamStream) error {
+func (e *GetArea) Stream(ctx context.Context, req *getArea.StreamingRequest, stream getArea.GetArea_StreamStream) error {
 	log.Logf("Received GetArea.Stream request with count: %d", req.Count)
 
 	for i := 0; i < int(req.Count); i++ {
 		log.Logf("Responding: %d", i)
-		if err := stream.Send(&GetArea.StreamingResponse{
+		if err := stream.Send(&getArea.StreamingResponse{
 			Count: int64(i),
 		}); err != nil {
 			return err
@@ -34,14 +33,14 @@ func (e *GetArea) Stream(ctx context.Context, req *GetArea.StreamingRequest, str
 }
 
 // PingPong is a bidirectional stream handler called via client.Stream or the generated client code
-func (e *GetArea) PingPong(ctx context.Context, stream GetArea.GetArea_PingPongStream) error {
+func (e *GetArea) PingPong(ctx context.Context, stream getArea.GetArea_PingPongStream) error {
 	for {
 		req, err := stream.Recv()
 		if err != nil {
 			return err
 		}
 		log.Logf("Got ping %v", req.Stroke)
-		if err := stream.Send(&GetArea.Pong{Stroke: req.Stroke}); err != nil {
+		if err := stream.Send(&getArea.Pong{Stroke: req.Stroke}); err != nil {
 			return err
 		}
 	}

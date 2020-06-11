@@ -13,9 +13,9 @@ import (
 )
 
 func main() {
-	// create new web service
-	// 创建一个服务
-	service := web.NewService(
+		// create new web service
+		// 创建一个服务
+		service := web.NewService(
 		web.Name("go.micro.web.IhomeWeb"),
 		web.Version("latest"),
 		web.Address(":10086"),

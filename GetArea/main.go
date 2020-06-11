@@ -1,12 +1,9 @@
 package main
 
 import (
-	"./GetArea/handler"
-	"./GetArea/subscriber"
+	"GoMicroServer/GetArea/subscriber"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/util/log"
-
-	"./GetArea/proto/GetArea"
 )
 
 func main() {
@@ -14,13 +11,14 @@ func main() {
 	service := micro.NewService(
 		micro.Name("go.micro.srv.GetArea"),
 		micro.Version("latest"),
+		micro.Address(":8080"),
 	)
 
 	// Initialise service
 	service.Init()
 
 	// Register Handler
-	GetArea.RegisterGetAreaHandler(service.Server(), new(handler.GetArea))
+	//GetArea.RegisterGetAreaHandler(service.Server(), new(handler.GetArea))
 
 	// Register Struct as Subscriber
 	micro.RegisterSubscriber("go.micro.srv.GetArea", service.Server(), new(subscriber.GetArea))
